@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma Académica 7mo Grado | Hecho por Edgar Isaac Vásquez</title>
+  
+  <!-- Fuentes de Google: Lettering & Caligrafía (Dancing Script, Caveat, Great Vibes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@700&family=Great+Vibes&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      /* Paleta Celeste y Blanco */
+      --sky-primary: #0EA5E9;
+      --sky-hover: #0284C7;
+      --sky-light: #E0F2FE;
+      --sky-bg: #F0F9FF;
+      --sky-border: #BAE6FD;
+      --cyan-accent: #06B6D4;
+      
+      --text-dark: #0F172A;
+      --text-muted: #475569;
+      --bg-card: #FFFFFF;
+      --white: #FFFFFF;
+      
+      --shadow-sm: 0 2px 8px rgba(14, 165, 233, 0.08);
+      --shadow-md: 0 8px 24px rgba(14, 165, 233, 0.14);
+      
+      --font-lettering-primary: 'Dancing Script', cursive;
+      --font-lettering-secondary: 'Caveat', cursive;
+      --font-lettering-fancy: 'Great Vibes', cursive;
+      --font-main: 'Outfit', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-main);
+    }
+
+    body {
+      background-color: var(--sky-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* BARRA SUPERIOR */
+    header {
+      background-color: var(--white);
+      border-bottom: 3px solid var(--sky-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .top-bar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, var(--sky-primary), var(--cyan-accent));
+      color: var(--white);
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .brand-text h1 {
+      font-family: var(--font-lettering-primary);
+      font-size: 2.2rem;
+      color: var(--sky-hover);
+      line-height: 1;
+    }
+
+    .brand-text span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .author-badge {
+      background: var(--sky-light);
+      border: 2px dashed var(--sky-primary);
+      padding: 6px 16px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .author-badge i {
+      color: var(--sky-primary);
+    }
+
+    .author-badge span {
+      font-family: var(--font-lettering-secondary);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--sky-hover);
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .container {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 20px;
+    }
+
+    /* BANNER HERO CON LETTERING */
+    .hero-banner {
+      background: linear-gradient(135deg, #0EA5E9 0%, #38BDF8 50%, #06B6D4 100%);
+      border-radius: 24px;
+      padding: 35px 30px;
+      color: var(--white);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 30px;
+    }
+
+    .hero-lettering-title {
+      font-family: var(--font-lettering-fancy);
+      font-size: 4.2rem;
+      line-height: 1;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      font-weight: 500;
+      max-width: 750px;
+      margin: 0 auto 20px;
+    }
+
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px 20px 14px 50px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      outline: none;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--sky-primary);
+      font-size: 1.2rem;
+    }
+
+    /* SELECCIÓN DE ASIGNATURAS CON LETTERING */
+    .subjects-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .subject-btn {
+      background: var(--white);
+      border: 2px solid var(--sky-border);
+      border-radius: 18px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .subject-btn:hover, .subject-btn.active {
+      background: var(--sky-light);
+      border-color: var(--sky-primary);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .subject-btn i {
+      font-size: 1.8rem;
+      color: var(--sky-primary);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .subject-btn span {
+      font-family: var(--font-lettering-secondary);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--sky-hover);
+      display: block;
+      line-height: 1.1;
+    }
+
+    /* SELECCIÓN DE PARCIALES */
+    .term-selector {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .term-btn {
+      background: var(--white);
+      border: 2px solid var(--sky-border);
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-family: var(--font-lettering-secondary);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .term-btn:hover, .term-btn.active {
+      background: var(--sky-primary);
+      color: var(--white);
+      border-color: var(--sky-primary);
+    }
+
+    /* TEMAS CON ESTILO CUADERNO Y LETTERING */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    .topic-card {
+      background: var(--white);
+      border-radius: 20px;
+      border: 2px solid var(--sky-border);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topic-card-header {
+      background: linear-gradient(90deg, var(--sky-light), var(--sky-bg));
+      padding: 18px 20px;
+      border-bottom: 2px dashed var(--sky-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topic-card-title {
+      font-family: var(--font-lettering-primary);
+      font-size: 2.2rem;
+      color: var(--sky-hover);
+      line-height: 1.1;
+    }
+
+    .topic-badge {
+      background: var(--sky-primary);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+    }
+
+    .topic-body {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .explanation-box {
+      background: var(--sky-bg);
+      border-left: 4px solid var(--sky-primary);
+      padding: 12px 15px;
+      border-radius: 0 12px 12px 0;
+      font-size: 0.95rem;
+    }
+
+    .example-notebook {
+      background: #FAFAFA;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 15px;
+      position: relative;
+    }
+
+    .notebook-title {
+      font-family: var(--font-lettering-secondary);
+      font-size: 1.5rem;
+      color: var(--sky-hover);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    /* ACCORDEÓN DE PREGUNTAS */
+    .qa-accordion {
+      border: 1px solid var(--sky-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .qa-item {
+      border-bottom: 1px solid var(--sky-border);
+    }
+
+    .qa-item:last-child {
+      border-bottom: none;
+    }
+
+    .qa-question {
+      background: var(--sky-light);
+      padding: 10px 15px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      color: var(--sky-hover);
+    }
+
+    .qa-answer {
+      padding: 12px 15px;
+      font-size: 0.88rem;
+      background: var(--white);
+      display: none;
+    }
+
+    .qa-answer.show {
+      display: block;
+    }
+
+    /* HERRAMIENTAS INTERACTIVAS */
+    .tools-section {
+      margin-top: 50px;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 30px;
+      border: 2px solid var(--sky-border);
+    }
+
+    .section-title {
+      font-family: var(--font-lettering-fancy);
+      font-size: 3.5rem;
+      color: var(--sky-hover);
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .tool-card {
+      background: var(--sky-bg);
+      border: 2px solid var(--sky-border);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .tool-card h3 {
+      font-family: var(--font-lettering-secondary);
+      font-size: 1.8rem;
+      color: var(--sky-hover);
+      margin-bottom: 10px;
+    }
+
+    .calc-display {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      border: 2px solid var(--sky-border);
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    .btn-action {
+      background: var(--sky-primary);
+      color: var(--white);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-action:hover {
+      background: var(--sky-hover);
+    }
+
+    /* FLASHCARDS */
+    .flashcard {
+      min-height: 120px;
+      background: var(--white);
+      border: 2px dashed var(--sky-primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--sky-hover);
+      text-align: center;
+    }
+
+    .quiz-option {
+      background: var(--white);
+      border: 1px solid var(--sky-border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin: 6px 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* PIE DE PÁGINA */
+    footer {
+      margin-top: 50px;
+      background: var(--white);
+      border-top: 3px solid var(--sky-border);
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .footer-lettering {
+      font-family: var(--font-lettering-fancy);
+      font-size: 2.8rem;
+      color: var(--sky-hover);
+      margin-bottom: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-lettering-title { font-size: 3rem; }
+      .brand-text h1 { font-size: 1.8rem; }
+      .top-bar { justify-content: center; text-align: center; }
+      .section-title { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header>
+    <div class="top-bar">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="brand-text">
+          <h1>Aula Digital 7mo</h1>
+          <span>PLATAFORMA INTERACTIVA DE ESTUDIO</span>
+        </div>
+      </a>
+      <div class="author-badge">
+        <i class="fa-solid fa-pen-nib"></i>
+        <span>Hecho por Edgar Isaac Vásquez</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- BANNER HERO CON LETTERING ARTÍSTICO -->
+    <div class="hero-banner">
+      <h2 class="hero-lettering-title">Séptimo Grado</h2>
+      <p class="hero-subtitle">Plataforma educativa con resúmenes detallados, ejemplos prácticos, guías de preguntas y herramientas interactivas del 1er al 4to Parcial.</p>
+      
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Buscar cualquier tema, concepto o pregunta..." onkeyup="filterTopics()">
+      </div>
+    </div>
+
+    <!-- NAVEGACIÓN DE ASIGNATURAS -->
+    <div class="subjects-nav">
+      <div class="subject-btn active" onclick="switchSubject('math')">
+        <i class="fa-solid fa-calculator"></i>
+        <span>Matemáticas</span>
+      </div>
+      <div class="subject-btn" onclick="switchSubject('spanish')">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Español</span>
+      </div>
+      <div class="subject-btn" onclick="switchSubject('science')">
+        <i class="fa-solid fa-flask"></i>
+        <span>Ciencias Naturales</span>
+      </div>
+      <div class="subject-btn" onclick="switchSubject('socials')">
+        <i class="fa-solid fa-earth-americas"></i>
+        <span>Ciencias Sociales</span>
+      </div>
+      <div class="subject-btn" onclick="switchSubject('english')">
+        <i class="fa-solid fa-language"></i>
+        <span>Inglés</span>
+      </div>
+    </div>
+
+    <!-- NAVEGACIÓN DE PARCIALES -->
+    <div class="term-selector">
+      <button class="term-btn active" onclick="switchTerm(1)">1er Parcial</button>
+      <button class="term-btn" onclick="switchTerm(2)">2do Parcial</button>
+      <button class="term-btn" onclick="switchTerm(3)">3er Parcial</button>
+      <button class="term-btn" onclick="switchTerm(4)">4to Parcial</button>
+    </div>
+
+    <!-- ARCHIVO DINÁMICO DE TEMAS -->
+    <div class="topics-grid" id="topicsContainer"></div>
+
+    <!-- MÓDULO DE HERRAMIENTAS INTERACTIVAS -->
+    <div class="tools-section">
+      <h2 class="section-title">Herramientas de Estudio</h2>
+      <div class="tools-grid">
+        
+        <!-- CALCULADORA -->
+        <div class="tool-card">
+          <h3>Calculadora Matemática</h3>
+          <input type="text" id="calcInput" class="calc-display" placeholder="Ej. 15 * (-4) + 8" readonly>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px;">
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('7')">7</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('8')">8</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('9')">9</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('/')">/</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('4')">4</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('5')">5</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('6')">6</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('*')">*</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('1')">1</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('2')">2</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('3')">3</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('-')">-</button>
+            <button class="btn-action" style="padding: 8px;" onclick="clearCalc()">C</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('0')">0</button>
+            <button class="btn-action" style="padding: 8px;" onclick="solveCalc()">=</button>
+            <button class="btn-action" style="padding: 8px;" onclick="addCalc('+')">+</button>
+          </div>
+        </div>
+
+        <!-- FLASHCARDS -->
+        <div class="tool-card">
+          <h3>Tarjeta de Memoria</h3>
+          <div class="flashcard" id="flashcardBox" onclick="toggleFlashcard()">
+            ¡Haz clic para girar y ver la respuesta!
+          </div>
+          <button class="btn-action" onclick="nextFlashcard()">Siguiente Tarjeta</button>
+        </div>
+
+        <!-- RELOJ POMODORO -->
+        <div class="tool-card">
+          <h3>Reloj Pomodoro</h3>
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--sky-hover); margin: 10px 0;" id="timerDisplay">25:00</div>
+          <button class="btn-action" onclick="toggleTimer()" id="timerBtn">Iniciar Estudio</button>
+          <button class="btn-action" style="background: var(--text-muted);" onclick="resetTimer()">Reiniciar</button>
+        </div>
+
+        <!-- SIMULADOR DE QUIZ -->
+        <div class="tool-card">
+          <h3>Examen Rápido</h3>
+          <div style="text-align: left;" id="quizBox">
+            <p style="font-weight: 600; margin-bottom: 8px;" id="quizQuestion">Cargando pregunta...</p>
+            <div id="quizOptions"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <div class="footer-lettering">Hecho por Edgar Isaac Vásquez</div>
+    <p style="color: var(--text-muted); font-size: 0.95rem;">Plataforma Académica Completa de 7mo Grado</p>
+  </footer>
+
+  <script>
+    const db = {
+      math: {
+        terms: {
+          1: [
+            {
+              title: "Números Enteros (Z)",
+              explanation: "El conjunto de los números enteros incluye positivos, cero y negativos. Se representan con la letra Z.",
+              example: "+5 representa ganar 5 Lempiras. -5 representa gastar 5 Lempiras.",
+              qa: [{ q: "¿Qué es el valor absoluto?", a: "Es la distancia entre el número y el cero en la recta numérica (siempre positivo)." }]
+            },
+            {
+              title: "Suma y Resta en Z",
+              explanation: "Si tienen el mismo signo se suman y mantienen signo. Si tienen distinto signo se restan y gana el mayor.",
+              example: "(-7) + (-3) = -10  |  (-8) + (+12) = +4",
+              qa: [{ q: "¿Cuánto es (-15) + (+5)?", a: "El resultado es -10." }]
+            }
+          ],
+          2: [
+            {
+              title: "Ley de Signos",
+              explanation: "Multiplicar signos iguales da POSITIVO (+). Signos diferentes da NEGATIVO (-).",
+              example: "(+) × (+) = + | (-) × (-) = + | (+) × (-) = -",
+              qa: [{ q: "¿Cuánto es (-6) × (-4)?", a: "Es +24." }]
+            }
+          ],
+          3: [
+            {
+              title: "Variables y Álgebra",
+              explanation: "Una variable es una letra que representa un valor desconocido.",
+              example: "3x + 5 (Donde x es la variable)",
+              qa: [{ q: "¿Qué es un término algebraico?", a: "Combinación de signo, número y variables." }]
+            }
+          ],
+          4: [
+            {
+              title: "Ecuaciones de Primer Grado",
+              explanation: "Igualdad matemática donde buscamos encontrar el valor de la incógnita.",
+              example: "x + 8 = 15 => x = 7",
+              qa: [{ q: "¿Cómo despejar una variable?", a: "Pasando las operaciones inversas al otro lado del igual." }]
+            }
+          ]
+        }
+      },
+      spanish: {
+        terms: {
+          1: [{ title: "La Comunicación", explanation: "Proceso para transmitir información entre Emisor y Receptor.", example: "Profesor (Emisor) -> Clase (Receptor).", qa: [{ q: "¿Qué es el canal?", a: "El medio por donde viaja el mensaje." }] }],
+          2: [{ title: "El Sustantivo y Adjetivo", explanation: "Sustantivo nombra cosas, adjetivo las describe.", example: "El perro (Sustantivo) negro (Adjetivo).", qa: [{ q: "Tipos de sustantivos", a: "Propios, comunes, concretos, abstractos." }] }],
+          3: [{ title: "El Verbo", explanation: "Expresa acciones o estados.", example: "Nosotros estudiamos.", qa: [{ q: "¿Qué expresa el modo imperativo?", a: "Órdenes o mandatos." }] }],
+          4: [{ title: "Textos Narrativos", explanation: "Relatan hechos reales o ficticios.", example: "Cuentos y novelas.", qa: [{ q: "Estructura narrativa", a: "Inicio, Nudo y Desenlace." }] }]
+        }
+      },
+      science: {
+        terms: {
+          1: [{ title: "La Célula", explanation: "Unidad fundamental de todo ser vivo.", example: "Vegetal (con cloroplastos) y Animal.", qa: [{ q: "Función de la mitocondria", a: "Producir energía para la célula." }] }],
+          2: [{ title: "Reinos de la Naturaleza", explanation: "Cinco reinos: Monera, Protista, Fungi, Plantae, Animalia.", example: "Hongos pertenecen al reino Fungi.", qa: [{ q: "¿Qué es el Reino Monera?", a: "Bacterias unicelulares." }] }],
+          3: [{ title: "La Materia", explanation: "Todo lo que ocupa un lugar en el espacio.", example: "Sólido, Líquido, Gaseoso.", qa: [{ q: "¿Qué es la densidad?", a: "Masa dividida entre volumen." }] }],
+          4: [{ title: "Ecosistemas", explanation: "Relación entre seres vivos y su entorno.", example: "Planta -> Conejo -> Águila.", qa: [{ q: "¿Qué hacen los descomponedores?", a: "Reciclan la materia orgánica." }] }]
+        }
+      },
+      socials: {
+        terms: {
+          1: [{ title: "La Geografía", explanation: "Estudia la superficie terrestre y líneas imaginarias.", example: "Ecuador (Paralelo 0°).", qa: [{ q: "¿Qué es la longitud?", a: "Distancia respecto al Meridiano de Greenwich." }] }],
+          2: [{ title: "Centroamérica", explanation: "Istmo compuesto por 7 países.", example: "Honduras, Guatemala, El Salvador, etc.", qa: [{ q: "Río más largo de Centroamérica", a: "Río Coco o Segovia." }] }],
+          3: [{ title: "Cultura Maya", explanation: "Gran civilización precolombina.", example: "Destacaron en matemáticas y astronomía.", qa: [{ q: "¿Qué eran las ciudades-estado?", a: "Ciudades independientes como Copán." }] }],
+          4: [{ title: "Derechos Humanos", explanation: "Derechos inalienables de todas las personas.", example: "Derecho a la vida y educación.", qa: [{ q: "¿Qué significa inalienable?", a: "Que no se pueden quitar ni vender." }] }]
+        }
+      },
+      english: {
+        terms: {
+          1: [{ title: "Verb To Be", explanation: "Significa Ser o Estar (Am, Is, Are).", example: "I am a student. / She is happy.", qa: [{ q: "¿Cuándo usar IS?", a: "Con He, She, It." }] }],
+          2: [{ title: "Present Simple", explanation: "Expresa rutinas y hábitos.", example: "I play soccer every day.", qa: [{ q: "Auxiliar en preguntas", a: "Do / Does." }] }],
+          3: [{ title: "Possessives", explanation: "Indican posesión (My, Your, His, Her, Our, Their).", example: "This is my book.", qa: [{ q: "Posesivo para 'They'", a: "Their." }] }],
+          4: [{ title: "Modal CAN", explanation: "Expresa habilidad o capacidad.", example: "I can swim fast.", qa: [{ q: "Negación de CAN", a: "Cannot / Can't." }] }]
+        }
+      }
+    };
+
+    let currentSubject = 'math';
+    let currentTerm = 1;
+
+    window.onload = () => { renderTopics(); loadQuiz(); loadFlashcard(); };
+
+    function switchSubject(subjectKey) {
+      currentSubject = subjectKey;
+      document.querySelectorAll('.subject-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      renderTopics();
+    }
+
+    function switchTerm(termNumber) {
+      currentTerm = termNumber;
+      document.querySelectorAll('.term-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      renderTopics();
+    }
+
+    function renderTopics() {
+      const container = document.getElementById('topicsContainer');
+      container.innerHTML = '';
+      const topics = db[currentSubject]?.terms[currentTerm] || [];
+
+      topics.forEach((topic, idx) => {
+        const card = document.createElement('div');
+        card.className = 'topic-card';
+
+        let qaHTML = topic.qa.map((qaItem, index) => `
+          <div class="qa-item">
+            <div class="qa-question" onclick="toggleQA('${idx}-${index}')">
+              <span><i class="fa-solid fa-circle-question" style="margin-right: 6px;"></i> ${qaItem.q}</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="qa-answer" id="qa-${idx}-${index}">${qaItem.a}</div>
+          </div>
+        `).join('');
+
+        card.innerHTML = `
+          <div class="topic-card-header">
+            <h3 class="topic-card-title">${topic.title}</h3>
+            <span class="topic-badge">${currentTerm}º Parcial</span>
+          </div>
+          <div class="topic-body">
+            <div class="explanation-box"><strong>Explicación:</strong> ${topic.explanation}</div>
+            <div class="example-notebook">
+              <div class="notebook-title">Ejemplo</div>
+              <p>${topic.example}</p>
+            </div>
+            <div>
+              <p style="font-weight: 700; font-size: 0.9rem; color: var(--sky-hover); margin: 8px 0;">Guía de Examen:</p>
+              <div class="qa-accordion">${qaHTML}</div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function toggleQA(id) {
+      const el = document.getElementById(`qa-${id}`);
+      if (el) el.classList.toggle('show');
+    }
+
+    function filterTopics() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      document.querySelectorAll('.topic-card').forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(query) ? 'flex' : 'none';
+      });
+    }
+
+    function addCalc(v) { document.getElementById('calcInput').value += v; }
+    function clearCalc() { document.getElementById('calcInput').value = ''; }
+    function solveCalc() {
+      try { document.getElementById('calcInput').value = eval(document.getElementById('calcInput').value); }
+      catch(e) { document.getElementById('calcInput').value = 'Error'; }
+    }
+
+    const flashcards = [
+      { q: "¿Valor absoluto de -15?", a: "Es 15." },
+      { q: "¿Envia el mensaje?", a: "El Emisor." },
+      { q: "¿Fotosíntesis en celular?", a: "El Cloroplasto." }
+    ];
+    let currentFC = 0, fcShowing = false;
+    function loadFlashcard() { document.getElementById('flashcardBox').innerText = flashcards[currentFC].q; fcShowing = false; }
+    function toggleFlashcard() {
+      document.getElementById('flashcardBox').innerText = fcShowing ? flashcards[currentFC].q : "R: " + flashcards[currentFC].a;
+      fcShowing = !fcShowing;
+    }
+    function nextFlashcard() { currentFC = (currentFC + 1) % flashcards.length; loadFlashcard(); }
+
+    let timerSeconds = 1500, timerInterval = null;
+    function updateTimerDisplay() {
+      const m = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+      const s = (timerSeconds % 60).toString().padStart(2, '0');
+      document.getElementById('timerDisplay').innerText = `${m}:${s}`;
+    }
+    function toggleTimer() {
+      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; document.getElementById('timerBtn').innerText = "Continuar"; }
+      else {
+        document.getElementById('timerBtn').innerText = "Pausar";
+        timerInterval = setInterval(() => {
+          if (timerSeconds > 0) { timerSeconds--; updateTimerDisplay(); }
+          else { clearInterval(timerInterval); alert("¡Tiempo terminado!"); }
+        }, 1000);
+      }
+    }
+    function resetTimer() { clearInterval(timerInterval); timerInterval = null; timerSeconds = 1500; updateTimerDisplay(); document.getElementById('timerBtn').innerText = "Iniciar Estudio"; }
+
+    const quizData = [
+      { q: "¿Resultado de (-8) + (+12)?", options: ["-20", "+4", "-4"], correct: 1 },
+      { q: "¿Qué tipo de palabra es 'Caminar'?", options: ["Sustantivo", "Verbo", "Adjetivo"], correct: 1 }
+    ];
+    let currentQuiz = 0;
+    function loadQuiz() {
+      const qObj = quizData[currentQuiz];
+      document.getElementById('quizQuestion').innerText = qObj.q;
+      const opts = document.getElementById('quizOptions');
+      opts.innerHTML = '';
+      qObj.options.forEach((opt, idx) => {
+        const btn = document.createElement('div');
+        btn.className = 'quiz-option';
+        btn.innerText = opt;
+        btn.onclick = () => {
+          alert(idx === qObj.correct ? "¡Correcto!" : "Incorrecto.");
+          currentQuiz = (currentQuiz + 1) % quizData.length;
+          loadQuiz();
+        };
+        opts.appendChild(btn);
+      });
+    }
+  </script>
+</body>
+</html>
